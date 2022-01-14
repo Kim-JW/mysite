@@ -11,11 +11,11 @@
 		<div id="header">
 			<h1>MySite</h1>
 			<ul>
-				<li><a href="">ë¡ê·¸ì¸</a><li>
-				<li><a href="">íìê°ì</a><li>
-				<li><a href="">íìì ë³´ìì </a><li>
-				<li><a href="">ë¡ê·¸ìì</a><li>
-				<li>ë ìëíì¸ì ^^;</li>
+				<li><a href="">로그인</a><li>
+				<li><a href="">회원가입</a><li>
+				<li><a href="">회원정보수정</a><li>
+				<li><a href="">로그아웃</a><li>
+				<li>님 안녕하세요 ^^;</li>
 			</ul>
 		</div>
 		<div id="content">
@@ -23,18 +23,18 @@
 				<form method="post" action="/guestbook">
 					<input type="hidden" name="a" value="delete">
 					<input type='hidden' name="no" value="">
-					<label>ë¹ë°ë²í¸</label>
+					<label>비밀번호</label>
 					<input type="password" name="password">
-					<input type="submit" value="íì¸">
+					<input type="submit" value="확인">
 				</form>
-				<a href="">ë°©ëªë¡ ë¦¬ì¤í¸</a>
+				<a href="">방명록 리스트</a>
 			</div>
 		</div>
 		<div id="navigation">
 			<ul>
-				<li><a href="">ìëí</a></li>
-				<li><a href="">ë°©ëªë¡</a></li>
-				<li><a href="">ê²ìí</a></li>
+				<li><a href="">안대혁</a></li>
+				<li><a href="">방명록</a></li>
+				<li><a href="">게시판</a></li>
 			</ul>
 		</div>
 		<div id="footer">
