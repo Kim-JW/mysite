@@ -66,7 +66,7 @@
 		</div>
 		<div id="navigation">
 			<ul>
-				<li><a href="<%= request.getContextPath()%>/main">재웅재웅</a></li>
+				<li><a href="<%= request.getContextPath()%>/">재웅재웅</a></li>
 				<li><a href="">방명록</a></li>
 				<li><a href="">게시판</a></li>
 			</ul>
