@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>mysite02</display-name>
- 
- 	<!-- context(global) parameters -->
- 	<context-param>
- 		<param-name>contextConfigLocation</param-name>
- 		<param-value>/WEB-INF/applicationContext.xml</param-value>
- 	</context-param>
- 	
- <!-- Context Load Listener -->
- 
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
   <listener>
     <listener-class>com.poscoict.web.listener.ContextLoadListener</listener-class>
   </listener>
-  
-  <!-- Filter -->
   <filter>
     <display-name>EncodingFilter</display-name>
     <filter-name>EncodingFilter</filter-name>
@@ -28,8 +21,6 @@
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-  <!-- Servlets -->
   <servlet>
     <description></description>
     <display-name>MainController</display-name>
@@ -64,8 +55,7 @@
     <servlet-name>GuestbookController</servlet-name>
     <url-pattern>/guestbook</url-pattern>
   </servlet-mapping>
-  
-   <welcome-file-list>
+  <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -73,4 +63,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>BoardController</display-name>
+    <servlet-name>BoardController</servlet-name>
+    <servlet-class>com.poscoict.mysite.controller.BoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardController</servlet-name>
+    <url-pattern>/board</url-pattern>
+  </servlet-mapping>
 </web-app>
