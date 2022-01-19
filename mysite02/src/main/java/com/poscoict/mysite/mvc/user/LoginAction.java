@@ -1,4 +1,4 @@
-package com.poscoict.mysite.mvc.user;
+ package com.poscoict.mysite.mvc.user;
 
 import java.io.IOException;
 
@@ -32,6 +32,7 @@ public class LoginAction implements Action {
 		// 인증 처리(Session 처리)
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
+		session.setAttribute("UserNo", authUser.getNo());
 		
 		MvcUtil.redirect(request.getContextPath(), request, response);
 	}
