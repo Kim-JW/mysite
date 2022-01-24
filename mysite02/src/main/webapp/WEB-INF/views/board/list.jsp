@@ -69,7 +69,7 @@
 				
 				<a href="${pageContext.request.contextPath }/board?currentPage=${currentPage-1}">◀</a>
 					</c:when>
-				</c:choose>
+				</c:choose> 
 				
 				<c:set var="pageNum" value="${pageNum }" />
 					<c:forEach var = "i" begin="1" end = "${pageNum }">
