@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.poscoict.mysite.exception.UserRepositoryException;
@@ -15,7 +18,11 @@ import com.poscoict.mysite.vo.UserVo;
 @Repository
 public class UserRepository {
 
+	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	public boolean update(UserVo userVo) {
 		boolean result = false;
