@@ -19,10 +19,10 @@ import com.poscoict.mysite.vo.UserVo;
 public class UserRepository {
 
 	@Autowired
-	private DataSource dataSource;
+	private DataSource dataSource ;
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession ;
 	
 	public boolean update(UserVo userVo) {
 		boolean result = false;
