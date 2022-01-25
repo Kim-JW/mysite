@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.stereotype.Repository;
 
 import com.poscoict.mysite.exception.UserRepositoryException;
@@ -13,13 +14,16 @@ import com.poscoict.mysite.vo.UserVo;
 
 @Repository
 public class UserRepository {
+
+	private DataSource dataSource;
+	
 	public boolean update(UserVo userVo) {
 		boolean result = false;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			if(userVo.getPassword() == null || "".equals(userVo.getPassword())) {
 				String sql = "update user set name=?, gender=? where no=?";
@@ -64,7 +68,7 @@ public class UserRepository {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			String sql =
 					"  insert" +
@@ -107,7 +111,7 @@ public class UserRepository {
 		ResultSet rs = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			String sql = "select no, name, email, gender from user where no=?";
 			pstmt = conn.prepareStatement(sql);
@@ -156,9 +160,9 @@ public class UserRepository {
 		ResultSet rs = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
-			String sql = "elect no, name from user where email=? and password=?";
+			String sql = "select no, name from user where email=? and password=?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, email);

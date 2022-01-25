@@ -11,5 +11,8 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 	<h1> Exception Occurs</h1>
+	<p>
+		${exception }
+	</p>
 </body>
 </html>
