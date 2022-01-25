@@ -27,7 +27,7 @@ public class UserRepository {
 	public boolean update(UserVo userVo) {
 		boolean result = false;
 
-		Connection conn = null;
+		Connection conn = null ;
 		PreparedStatement pstmt = null ;
 		try {
 			conn = dataSource.getConnection();
