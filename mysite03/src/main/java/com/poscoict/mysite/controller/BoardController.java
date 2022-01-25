@@ -95,7 +95,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(HttpSession session, @ModelAttribute BoardVo boardVo, @RequestParam(value = "p", required = true, defaultValue = "1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword) {
+	public String write(HttpSession session, BoardVo boardVo, @RequestParam(value = "p", required = true, defaultValue = "1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword) {
 		/* access control */
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
