@@ -15,6 +15,14 @@
 
 	<!-- 서블릿 컨테이너(tomcat)의 DefaultServlet 위임(delegate) Handler -->
 	<mvc:default-servlet-handler />
+	
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth"/>
+			<bean class = "com.poscoict.mysite.security.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- ViewResolver -->
 	<bean id="viewResolver"
