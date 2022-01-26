@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poscoict.mysite.security.Auth;
+import com.poscoict.mysite.security.AuthUser;
 import com.poscoict.mysite.service.BoardService;
 import com.poscoict.mysite.vo.BoardVo;
 import com.poscoict.mysite.vo.UserVo;
@@ -33,9 +35,10 @@ public class BoardController {
 		
 		return "board/index";
 	}
-
+	
+	@Auth
 	@RequestMapping("/view/{no}")
-	public String view(@PathVariable("no") Long no, Model model) {
+	public String view(@AuthUser UserVo authUser, @PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.getContents(no);
 		model.addAttribute("boardVo", boardVo);
 		
@@ -82,27 +85,17 @@ public class BoardController {
 
 		return "redirect:/board/view/" + boardVo.getNo() + "?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
 	}
-
+	
+	@Auth
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(HttpSession session) {
-		/* access control */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		
+	public String write() {
 		return "board/write";
 	}
-
+	
+	@Auth
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(HttpSession session, BoardVo boardVo, @RequestParam(value = "p", required = true, defaultValue = "1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword) {
-		/* access control */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		
-		boardVo.setUserNo(authUser.getNo());
+	public String write(@AuthUser UserVo authUser, BoardVo boardVo, @RequestParam(value = "p", required = true, defaultValue = "1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword) {       
+		boardVo.setUserNo(authUser.getNo()); 
 		boardService.addContents(boardVo);
 
 		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");

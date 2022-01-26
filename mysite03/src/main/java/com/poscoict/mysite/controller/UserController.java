@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poscoict.mysite.security.Auth;
+import com.poscoict.mysite.security.AuthUser;
 import com.poscoict.mysite.service.UserService;
 import com.poscoict.mysite.vo.UserVo;
 
@@ -39,22 +41,10 @@ public class UserController {
 	public String login() {
 		return "user/login";
 	}	
-
-	@RequestMapping(value="/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("authUser");
-		session.invalidate();
-		
-		return "redirect:/";
-	}
 	
+	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
-		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
+	public String update(@AuthUser UserVo authUser, Model model) {
 		
 		Long userNo = authUser.getNo();
 		UserVo userVo = userService.getUser(userNo);
@@ -63,13 +53,10 @@ public class UserController {
 		return "user/update";
 	}
 	
+	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(HttpSession session, UserVo userVo) {
+	public String update(@AuthUser UserVo authUser, UserVo userVo) {
 		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
 		
 		userVo.setNo(authUser.getNo());
 		userService.updateUser(userVo);
