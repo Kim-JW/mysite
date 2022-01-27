@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StopWatch;
 
 import com.poscoict.mysite.exception.UserRepositoryException;
 import com.poscoict.mysite.vo.UserVo;
@@ -42,10 +43,16 @@ public class UserRepository {
 	}
 
 	public UserVo findByEmailAndPassword(String email, String password) throws UserRepositoryException{
+
+		
 		Map<String, String> map = new HashMap<>();
 		map.put("e", email);
 		map.put("p", password);
-		return sqlSession.selectOne("user.findByEmailAndPassword", map);
+		
+		UserVo vo = sqlSession.selectOne("user.findByEmailAndPassword", map);
+		
+		
+		return vo;
 	}	
 
 }
