@@ -13,42 +13,62 @@
 	<!-- Message Converter, Handler Mapping, Validator 생성 및 설정 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
-			<bean class = "com.poscoict.mysite.security.AuthUserHandlerMethodArgumentResolver" />
-		</mvc:argument-resolvers>	
+			<bean
+				class="com.poscoict.mysite.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
 	<!-- 서블릿 컨테이너(tomcat)의 DefaultServlet 위임(delegate) Handler -->
 	<mvc:default-servlet-handler />
-	
+
 	<!-- Interceptors -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/auth"/>
-			<bean class = "com.poscoict.mysite.security.LoginInterceptor"/>
+			<mvc:mapping path="/user/auth" />
+			<bean class="com.poscoict.mysite.security.LoginInterceptor" />
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
-			<mvc:mapping path="/user/logout"/>
-			<bean class = "com.poscoict.mysite.security.LogoutInterceptor"/>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.poscoict.mysite.security.LogoutInterceptor" />
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/user/auth"/>
-			<mvc:exclude-mapping path="/user/logout"/>
-			<mvc:exclude-mapping path="/assets/**"/>
-			<bean class = "com.poscoict.mysite.security.AuthInterceptor"/>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/auth" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="com.poscoict.mysite.security.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- ViewResolver -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/views/"/>
-		<property name="suffix" value=".jsp"/>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 6. MessageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages/messages_ko</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- mvc url-resource mapping -->
+	<!-- 
+	<mvc:resources mapping="/images/**" location="file:/upload-images/" />
+	 -->
+	<mvc:resources mapping="/images/**" location="file:/Users/gimjaeung/upload-images/" />
+	
+
 	<context:annotation-config />
-	<context:component-scan base-package="com.poscoict.mysite.controller, com.poscoict.mysite.exception" />
+	<context:component-scan
+		base-package="com.poscoict.mysite.controller, com.poscoict.mysite.exception" />
 </beans>
