@@ -26,6 +26,13 @@
 				
 					<label class="block-label" for="name">이름</label>
 					<form:input path="name"/>
+					<p style ="text-align:left; padding-left:0; color: #f00">
+						<spring:hasBindErrors name="userVo">
+							<c:if test="${errors.hasFieldErrors('name') }">
+								<spring:message code = "${errors.getFieldError('name').codes[0] }"/>
+							</c:if>
+						</spring:hasBindErrors>
+					</p>
 					
 					<!--
 					<input id="name" name="name" type="text" value="${userVo.name }">
@@ -39,10 +46,15 @@
 					</p>
 					-->
 					<label class="block-label" for="email">이메일</label>
+					<form:input path="email" />
+					<input type="button" value="id 중복체크">
+					<p style="text-align:left; padding-left:0; color:#f00">
+						<form:errors path="email" />
+					</p>	
 					<!--  
 					<input id="email" name="email" type="text" value="">
 					-->
-					
+					<!-- 
 					<spring:message code = "user.join.label.password"/>
 					
 					<p style ="text-align:left; padding-left:0; color: #f00">
@@ -51,10 +63,12 @@
 					<form:errors path="email"/>
 					</p>
 					
-					<label class="block-label">패스워드</label>
-					<form:password path = "password"/>
-					<p style ="text-align:left; padding-left:0; color: #f00">
-					<form:errors path = "password"/>
+					 -->
+					
+					<label class="block-label"><spring:message code="user.join.label.password" /></label>
+					<form:password path="password" />
+					<p style="text-align:left; padding-left:0; color:#f00">
+						<form:errors path="password" />
 					</p>
 					
 					<!--  
@@ -63,9 +77,17 @@
 					
 					<fieldset>
 						<legend>성별</legend>
+						<form:radiobutton path="gender" value="female" label="여"/>
+						<form:radiobutton path="gender" value="male" label="남"/>
+					</fieldset>
+					
+					<!--  
+					<fieldset>
+						<legend>성별</legend>
 						<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
 						<label>남</label> <input type="radio" name="gender" value="male">
 					</fieldset>
+					-->
 					
 					<fieldset>
 						<legend>약관동의</legend>

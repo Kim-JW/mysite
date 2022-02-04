@@ -14,6 +14,7 @@ public class LogoutInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		if(session != null) {
 			session.removeAttribute("authUser");
+			session.removeAttribute("site");
 			session.invalidate();
 		}
 		
