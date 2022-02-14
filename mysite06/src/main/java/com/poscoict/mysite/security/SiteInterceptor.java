@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import com.poscoict.mysite.service.SiteService;
 import com.poscoict.mysite.vo.SiteVo;
 
