@@ -12,6 +12,28 @@
 
 	<!-- Message Converter, Handler Mapping, Validator 생성 및 설정 -->
 	<mvc:annotation-driven>
+	<!-- argument resolvers -->
+		<mvc:message-converters>
+		<!-- HTML(text) message converter -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		 
+		<!-- 3. JSON message converter -->
+		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+					<value>application/json; charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+		
+		</mvc:message-converters>
+	
 		<mvc:argument-resolvers>
 			<bean
 				class="com.poscoict.mysite.security.AuthUserHandlerMethodArgumentResolver" />
