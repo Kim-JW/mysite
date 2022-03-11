@@ -23,6 +23,13 @@
 		]]>		
 	</select>
 	
+	<select id="findAllBySn" parameterType="long" resultType="guestbookvo">
+		<![CDATA[
+			select no, name, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, message 
+			from guestbook order by reg_date desc limit #{sn}, 3
+		]]>		
+	</select>
+	
 	<delete id="delete" parameterType="map">
 		<![CDATA[
 			delete from guestbook where no=#{no } and password=#{password }

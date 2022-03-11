@@ -53,6 +53,10 @@ public class UserRepository {
 		
 		
 		return vo;
+	}
+
+	public UserVo findByEmail(String email) {
+		return sqlSession.selectOne("user.findByEmail", email);
 	}	
 
 }
